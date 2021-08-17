@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:release_and_map/models/user.dart';
+import 'package:release_and_map/screens/map_sample.dart';
 import 'package:release_and_map/screens/widget/myCard.dart';
 import 'package:release_and_map/utils.dart';
 
@@ -45,10 +46,17 @@ class _UserDetailsState extends State<UserDetails> {
             height: 10,
           ),
           InkWell(
-              onTap: () {
-                launchURL("https://${widget.user.website}");
-              },
-              child: Text("web: ${widget.user.website}"))
+            onTap: () {
+              launchURL("https://${widget.user.website}");
+            },
+            child: Text("web: ${widget.user.website}"),
+          ),
+          MaterialButton(
+            onPressed: () {
+              pushPage(context, MapSample(userGeo: widget.user.address.geo));
+            },
+            child: Text("See user location"),
+          )
         ],
       ),
     );
